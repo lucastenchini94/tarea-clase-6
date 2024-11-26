@@ -2,17 +2,16 @@ const botonIngresarInput = document.querySelector("#ingresar-inputs")
 const botonCalcularParametros = document.querySelector("#calculo-de-parametros")
 const textCalculos = document.querySelector("h2")
 const botonRestablecer = document.querySelector("#restablecer-todo")
-
+const nodoPaginaform = document.querySelector("form")
 botonRestablecer.onclick = function () {
     location.reload()
     return false
 }
 
 botonIngresarInput.onclick = function () {
+    borrarIntegrantes();
     const cantPersonas = document.querySelector("#cantidad-personas").value
     let contUno = 0
-    const nodoPaginaform = document.querySelector("form")
-    
     while (contUno<cantPersonas) {
         
         const nuevoLi = document.createElement("li")
@@ -24,11 +23,17 @@ botonIngresarInput.onclick = function () {
         contUno++
         
     }
-
+    console.log(validarCantidadDePersonas(cantPersonas));    
 
     return false
 }
-
+function borrarIntegrantes() {
+    const integrantes = document.querySelectorAll("li");
+    for (let i = 0; i < integrantes.length; i++) {
+        integrantes[i].remove();
+        
+    }
+}
 botonCalcularParametros.onclick = function(){
     const edadesF = document.querySelectorAll(".edades")
     const edades = []
@@ -47,6 +52,7 @@ botonCalcularParametros.onclick = function(){
             mayorEdad=edades[i]
         }
         sumadorEdades=sumadorEdades+edades[i]
+        console.log(validarEdades(edades[i]));
     }
     const promedio = sumadorEdades/edades.length
 
@@ -60,6 +66,26 @@ botonCalcularParametros.onclick = function(){
     return false
 }
 
-
-
-
+function validarCantidadDePersonas(cantPersonas) {
+    if (cantPersonas === "0") {
+        return "este campo debe tener 1 caracter o mas";
+    }
+    if (cantPersonas === "") {
+        return "este campo debe tener 1 caracter o mas";
+    }
+    if (cantPersonas % 1 !== 0) {
+        return "el campo solo admite numeros enteros";
+    }else{
+    return "";
+    }
+}
+function validarEdades(edades) {
+    if (edades === 0) {
+        return "este campo no puede estar vaco, por favor ingrese una edad";
+    }
+    if (edades % 1 !== 0) {
+        return "el campo solo admite numeros enteros";
+    }else{
+        return "";
+    }
+}
