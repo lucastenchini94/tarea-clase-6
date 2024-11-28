@@ -36,7 +36,7 @@ botonCalcular.onclick = function () {
     let contadorErrores = 0;
     for (let i = 0; i < $salarioAnual.length; i++) {
         
-        salarioAnual.push(Number($salarioAnual[i].value))
+        salarioAnual.push(($salarioAnual[i].value))
             if (validarSalarioAnual(salarioAnual[i]) === "") {
             
             }else{
@@ -59,7 +59,7 @@ if (contadorErrores===0) {
 
 
     while (contW<longitudLista) {
-        sumadorPromedio=sumadorPromedio+salarioAnual[contW];
+        sumadorPromedio=sumadorPromedio+Number(salarioAnual[contW]);
         if (mayorSalario<salarioAnual[contW]) {
             mayorSalario=salarioAnual[contW];
         }
@@ -97,7 +97,7 @@ function borrarCalculos(){
 }
 
 function validarSalarioAnual(salarioAnual) {
-    if (salarioAnual=== 0) {
+    if (salarioAnual=== "") {
         return "porfavor ingrese algun salario en la casilla ";
     }
     if (salarioAnual % 1 !== 0) {

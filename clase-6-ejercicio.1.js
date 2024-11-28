@@ -47,7 +47,7 @@ botonCalcularParametros.onclick = function(){
     const edades = []
     let contadorErorres = 0;
     for (let i = 0; i < edadesF.length; i++) {
-        edades.push(Number(edadesF[i].value))
+        edades.push((edadesF[i].value))
         console.log(validarEdades(edades[i]));
         
         if (validarEdades(edades[i])==="") {
@@ -70,7 +70,7 @@ botonCalcularParametros.onclick = function(){
         if (edades[i]>mayorEdad) {
             mayorEdad=edades[i]
         }
-        sumadorEdades=sumadorEdades+edades[i]
+        sumadorEdades=sumadorEdades+Number(edades[i]);
         
       }
        const promedio = sumadorEdades/edades.length
@@ -109,7 +109,11 @@ function validarCantidadDePersonas(cantPersonas) {
 }
 function validarEdades(edades) {
     
-    if (edades === 0) {
+    if (edades === "") {
+        return "este campo no puede estar vacio, por favor ingrese una edad";
+        
+    }
+    if (edades === "0") {
         return "este campo no puede estar vacio, por favor ingrese una edad";
         
     }
