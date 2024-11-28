@@ -33,11 +33,23 @@ const botonCalcular = document.querySelector("#calcular");
 botonCalcular.onclick = function () {
     const $salarioAnual = document.querySelectorAll(".salario");
     const salarioAnual = [];
+    let contadorErrores = 0;
     for (let i = 0; i < $salarioAnual.length; i++) {
-        if (($salarioAnual[i].value) != 0) {
-        salarioAnual.push(Number($salarioAnual[i].value)) 
-        }  
+        
+        salarioAnual.push(Number($salarioAnual[i].value))
+            if (validarSalarioAnual(salarioAnual[i]) === "") {
+            
+            }else{
+              contadorErrores++;
+            }
+        console.log(validarSalarioAnual(salarioAnual[i]));
+          
     }
+    
+        
+    
+if (contadorErrores===0) {
+    
 
     const longitudLista = salarioAnual.length;
     let contW = 0;
@@ -72,7 +84,9 @@ botonCalcular.onclick = function () {
 
     const textoParrafo = document.querySelector("h2");
     textoParrafo.innerText = ("el salario mas alto es de $"+mayorSalario+", el salario mas bajo es de $"+menorSalario+", el promedio anual es de $"+promedioAnual+", el promedio mensual es de $"+promedioMensual);
-
+}else{
+    alert("porfavor corregir errores de escritura");
+}
 
 
 
@@ -82,5 +96,13 @@ function borrarCalculos(){
     document.querySelector("h2").textContent=""
 }
 
-
-
+function validarSalarioAnual(salarioAnual) {
+    if (salarioAnual=== 0) {
+        return "porfavor ingrese algun salario en la casilla ";
+    }
+    if (salarioAnual % 1 !== 0) {
+        return "porfavor solo ingrese numeros enteros en la casilla ";
+    }else{
+        return "";
+    }
+}
