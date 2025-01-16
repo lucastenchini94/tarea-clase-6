@@ -90,6 +90,7 @@ botonCalcularParametros.onclick = function(){
     return false
 }
 
+
 function validarCantidadDePersonas(cantPersonas) {
      
     if (cantPersonas === "0") {
